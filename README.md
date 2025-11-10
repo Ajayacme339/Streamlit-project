@@ -54,6 +54,4 @@ This project includes a GitHub Actions workflow that:
 - Python 3.11+
 - Streamlit 1.28.0+
 
-## License
 
-MIT License
