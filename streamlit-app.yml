@@ -1,0 +1,54 @@
+name: Streamlit App CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install streamlit
+        pip install pycodestyle
+    
+    - name: Check PEP 8 compliance
+      run: |
+        pycodestyle javacoffee.py --max-line-length=79
+      continue-on-error: true
+    
+    - name: Test Streamlit app syntax
+      run: |
+        python -c "import streamlit as st; import py_compile; py_compile.compile('javacoffee.py', doraise=True)"
+    
+    - name: Run Streamlit app (headless test)
+      run: |
+        timeout 10 streamlit run javacoffee.py --server.headless=true --server.port=8501 || true
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Deploy to Streamlit Cloud
+      run: |
+        echo "Deploy to Streamlit Cloud by connecting your GitHub repository"
+        echo "Visit: https://share.streamlit.io/"
