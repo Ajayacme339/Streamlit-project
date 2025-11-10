@@ -1,6 +1,6 @@
-# GlobalJava Roasters - Customer Feedback App
+# AjayCoffeShop - Customer Feedback App
 
-A Streamlit-based customer feedback application for GlobalJava Roasters coffee shop.
+A Streamlit-based customer feedback application for AjayCoffeShop.
 
 ## Features
 
