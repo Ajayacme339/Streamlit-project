@@ -41,13 +41,9 @@ The app will open in your default browser at `http://localhost:8501`
 2. Visit [Streamlit Cloud](https://share.streamlit.io/)
 3. Connect your GitHub repository
 4. Deploy with one click!
+5. Link for the app: https://app-project-a4lrnascvvf7zn9vwripjv.streamlit.app/
 
-## CI/CD
 
-This project includes a GitHub Actions workflow that:
-- Runs PEP 8 compliance checks
-- Tests Python syntax
-- Validates the Streamlit app
 
 ## Requirements
 
